@@ -42,4 +42,5 @@ key="secretKey"
 region="region"
 bucket="bucket"
 [upload.local]
+path="storage/upload"
 
