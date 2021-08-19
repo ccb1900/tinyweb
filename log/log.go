@@ -12,8 +12,8 @@ type ILog interface {
 }
 var defaultLog ILog
 
-func Fatal()  {
-	defaultLog.Fatal()
+func Fatal(record ...interface{})  {
+	defaultLog.Fatal(record)
 }
 
 func Error()  {

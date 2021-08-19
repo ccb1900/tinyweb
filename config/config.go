@@ -12,10 +12,16 @@ var v *viper.Viper
 func LoadConfig(path string)  {
 	v = viper.New()
 	v.SetConfigFile(path)
+	beforeLoad(v)
 	err := v.ReadInConfig() // Find and read the config file
 	if err != nil { // Handle errors reading the config file
 		log.Fatalln(fmt.Errorf("Fatal error config file: %w \n", err))
 	}
+}
+
+//
+func beforeLoad(v *viper.Viper)  {
+	v.SetDefault("app.timezone","Asia/Shanghai")
 }
 
 

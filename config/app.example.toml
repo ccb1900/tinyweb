@@ -4,6 +4,7 @@ debug=true
 env="dev"
 port="12346"
 host="0.0.0.0"
+timezone="Asia/Shanghai"
 [jwt]
 secret="1234567"
 expire=7200
@@ -18,13 +19,27 @@ port=12345
 database="test"
 username="root"
 password="example"
+[db.postgres]
+host="123"
+port="12345"
+database="test"
+username="root"
+password="example"
 [cache]
 driver="file"
 [redis]
 host="127.0.0.1"
 port=6379
+db=0
+password=""
 [mail]
 
 [upload]
-path="upload"
+driver="local"
+[upload.cos]
+id="secretID"
+key="secretKey"
+region="region"
+bucket="bucket"
+[upload.local]
 
