@@ -9,6 +9,7 @@ secret="1234567"
 expire=7200
 [log]
 level="info"
+driver="default"
 [db]
 connection="mysql"
 [db.mysql]
