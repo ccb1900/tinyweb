@@ -37,3 +37,7 @@ func client()  {
 	// Output: key value
 	// key2 does not exist
 }
+
+func Init()  {
+	
+}
