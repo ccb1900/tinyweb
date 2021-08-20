@@ -26,11 +26,11 @@ func Init()  {
 	start := time.Date(1900,1,1,0,0,0,0,local)
 	sf = sonyflake.NewSonyflake(sonyflake.Settings{
 		StartTime:      start,
-		//MachineID: func() (uint16, error) {
-		//	return 1000,nil
-		//},
-		//CheckMachineID: func(u uint16) bool {
-		//	return true
-		//},
+		MachineID: func() (uint16, error) {
+			return 1000,nil
+		},
+		CheckMachineID: func(u uint16) bool {
+			return true
+		},
 	})
 }
