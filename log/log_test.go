@@ -10,7 +10,7 @@ func TestDebug(t *testing.T) {
 	config.LoadConfig("../config/app.example.toml")
 	Init()
 	call()
-	c(10, func(i int) {
+	c(100, func(i int) {
 		Debug(i,"debug")
 	})
 }
