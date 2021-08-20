@@ -7,6 +7,7 @@ import (
 	"github.com/ccb1900/tinyweb/config"
 	"github.com/ccb1900/tinyweb/db"
 	"github.com/ccb1900/tinyweb/helper"
+	log2 "github.com/ccb1900/tinyweb/log"
 	gin2 "github.com/ccb1900/tinyweb/middleware/gin"
 	"github.com/ccb1900/tinyweb/redis"
 	"github.com/gin-gonic/gin"
@@ -75,6 +76,8 @@ func beforeAppStart(ctx *cli.Context)  {
 	}
 	// 加载配置
 	config.LoadConfig(ctx.String("c"))
+	// 日志初始化
+	log2.Init()
 	// 初始化数据库
 	db.Init()
 	// 初始化redis
