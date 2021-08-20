@@ -65,7 +65,7 @@ func start(ctx *cli.Context,f func())  {
 }
 
 func getAddr() string  {
-	return fmt.Sprintf("%s:%s",config.Get("app.host"),config.Get("port"))
+	return fmt.Sprintf("%s:%s",config.Get("app.host"),config.Get("app.port"))
 }
 
 func beforeAppStart(ctx *cli.Context)  {
