@@ -1,2 +1,5 @@
 package sms
 
+func Init()  {
+
+}
