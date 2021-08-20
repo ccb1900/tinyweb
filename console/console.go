@@ -109,10 +109,6 @@ func route()  {
 	app.Route()
 }
 func afterAppStart()  {
-	if config.Get("app.env") == "prod" {
-		gin.SetMode(gin.ReleaseMode)
-	}
-
 	middleware()
 	route()
 }

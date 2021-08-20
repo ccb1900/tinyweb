@@ -1,6 +1,9 @@
 package console
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/ccb1900/tinyweb/config"
+	"github.com/gin-gonic/gin"
+)
 
 type App struct {
 	Engine *gin.Engine
@@ -15,6 +18,9 @@ func GetApp() *App  {
 }
 
 func SetApp(f func())  {
+	if config.Get("app.env") == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	app = &App{
 		Engine: gin.New(),
 		Route: f,
