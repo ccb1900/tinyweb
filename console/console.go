@@ -24,13 +24,13 @@ func CliApp(f func())  {
 			{
 				Name: "start",
 				Action: func(ctx *cli.Context) error {
-					NewApp(f,newCliOption(ctx))
+					NewApp(f,newCliOption(ctx)).Run()
 					return nil
 				},
 			},
 		},
 		Action: func(ctx *cli.Context) error {
-			NewApp(f,newCliOption(ctx))
+			NewApp(f,newCliOption(ctx)).Run()
 			return nil
 		},
 	}).Run(os.Args)
