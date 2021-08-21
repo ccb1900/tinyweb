@@ -28,13 +28,13 @@ func GetApp() *App  {
 }
 
 func NewApp(f func(),o *CliOption) *App  {
-	app.beforeEngineStart()
-	if config.Get("app.env") == "prod" {
-		gin.SetMode(gin.ReleaseMode)
-	}
 	app = &App{
 		Route: f,
 		CliOption: o,
+	}
+	app.beforeEngineStart()
+	if config.Get("app.env") == "prod" {
+		gin.SetMode(gin.ReleaseMode)
 	}
 	app.Engine = gin.New()
 	app.afterEngineStart()
