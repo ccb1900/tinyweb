@@ -6,6 +6,7 @@ import (
 	"github.com/ccb1900/tinyweb/cache"
 	"github.com/ccb1900/tinyweb/config"
 	"github.com/ccb1900/tinyweb/db"
+	"github.com/ccb1900/tinyweb/flake"
 	"github.com/ccb1900/tinyweb/helper"
 	log2 "github.com/ccb1900/tinyweb/log"
 	gin2 "github.com/ccb1900/tinyweb/middleware/gin"
@@ -60,6 +61,8 @@ func (a *App) beforeEngineStart()  {
 	}
 	// 加载配置
 	config.LoadConfig(a.CliOption.Config)
+	// 雪花初始化
+	flake.Init()
 	// 日志初始化
 	log2.Init()
 	// 初始化数据库
