@@ -71,7 +71,6 @@ func (a *App) beforeEngineStart()  {
 	redis.Init()
 	// 缓存初始化
 	cache.Init()
-
 }
 
 func (a *App)middleware()  {

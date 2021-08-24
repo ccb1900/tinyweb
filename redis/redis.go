@@ -1,43 +1,38 @@
 package redis
 
 import (
-	"context"
 	"fmt"
 	"github.com/ccb1900/tinyweb/config"
+	"github.com/ccb1900/tinyweb/log"
 	"github.com/go-redis/redis/v8"
 )
-
-var ctx = context.Background()
-func client()  {
-	rdb := redis.NewClient(&redis.Options{
+var rdb *redis.Client
+func client()   {
+	rdb = redis.NewClient(&redis.Options{
 		Addr:     config.Get("redis.host")+":"+config.Get("redis.port"),
 		Password: config.Get("redis.password"), // no password set
 		DB:       config.GetInt("redis.db"),  // use default DB
 	})
-
-	err := rdb.Set(ctx, "key", "value", 0).Err()
+}
+func client2()  {
+	opt, err := redis.ParseURL(fmt.Sprintf("redis://%s:%s@%s:%s/%s",
+		config.GetInt("redis.host"),
+		config.GetInt("redis.port"),
+		config.GetInt("redis.password"),
+		config.GetInt("redis.db"),
+		config.GetInt("redis.db"),
+	))
 	if err != nil {
+		log.Debug(err)
 		panic(err)
 	}
 
-	val, err := rdb.Get(ctx, "key").Result()
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("key", val)
-
-	val2, err := rdb.Get(ctx, "key2").Result()
-	if err == redis.Nil {
-		fmt.Println("key2 does not exist")
-	} else if err != nil {
-		panic(err)
-	} else {
-		fmt.Println("key2", val2)
-	}
-	// Output: key value
-	// key2 does not exist
+	rdb = redis.NewClient(opt)
+}
+func Init()  {
+	client()
 }
 
-func Init()  {
-	
+func GetRDB() *redis.Client  {
+	return rdb
 }

@@ -9,6 +9,12 @@ func Success(ctx *gin.Context,obj interface{})  {
 	ctx.JSON(http.StatusOK,obj)
 }
 
+func Ok(c *gin.Context)  {
+	Success(c,gin.H{
+		"message": "操作成功",
+	})
+}
+
 func Created(ctx *gin.Context,obj interface{})  {
 	ctx.JSON(http.StatusCreated,obj)
 }

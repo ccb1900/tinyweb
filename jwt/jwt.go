@@ -3,6 +3,7 @@ package jwt
 import (
 	"errors"
 	"github.com/ccb1900/tinyweb/config"
+	"github.com/ccb1900/tinyweb/log"
 	"github.com/golang-jwt/jwt"
 	"time"
 )
@@ -42,7 +43,7 @@ func CreateJwtToken(id,username string) (string,error)  {
 			Id: "1000",
 		},
 	}
-
-	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString(config.Get("jwt.secret"))
+	log.Debug(config.Get("jwt.secret"))
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(config.Get("jwt.secret")))
 	return token, err
 }
