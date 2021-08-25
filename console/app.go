@@ -9,8 +9,11 @@ import (
 	"github.com/ccb1900/tinyweb/flake"
 	"github.com/ccb1900/tinyweb/helper"
 	log2 "github.com/ccb1900/tinyweb/log"
+	"github.com/ccb1900/tinyweb/mail"
 	gin2 "github.com/ccb1900/tinyweb/middleware/gin"
 	"github.com/ccb1900/tinyweb/redis"
+	"github.com/ccb1900/tinyweb/sms"
+	"github.com/ccb1900/tinyweb/upload"
 	"github.com/gin-gonic/gin"
 	"runtime/debug"
 )
@@ -71,6 +74,12 @@ func (a *App) beforeEngineStart()  {
 	redis.Init()
 	// 缓存初始化
 	cache.Init()
+	// 初始化短信
+	sms.Init()
+	//	初始化邮件
+	mail.Init()
+	// 初始化上传
+	upload.Init()
 }
 
 func (a *App)middleware()  {

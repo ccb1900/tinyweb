@@ -11,6 +11,8 @@ func Init()  {
 	switch config.Get("sms.driver") {
 	case "local":
 		s = local.New()
+	default:
+		s = local.New()
 	}
 }
 

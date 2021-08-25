@@ -19,14 +19,14 @@ func Created(ctx *gin.Context,obj interface{})  {
 	ctx.JSON(http.StatusCreated,obj)
 }
 
-func Fail(ctx *gin.Context,message string)  {
+func Fail(ctx *gin.Context,err error)  {
 	ctx.JSON(http.StatusBadRequest,gin.H{
-		"err": message,
+		"err": err.Error(),
 	})
 }
-func FailValidation(ctx *gin.Context,message string)  {
+func FailValidation(ctx *gin.Context,err error)  {
 	ctx.JSON(http.StatusUnprocessableEntity,gin.H{
-		"err": message,
+		"err": err.Error(),
 	})
 }
 func NotAuth(ctx *gin.Context,message string)  {

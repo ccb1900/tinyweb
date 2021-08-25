@@ -7,6 +7,7 @@ import (
 	"github.com/ccb1900/tinyweb/upload/contract"
 	"io"
 	"mime/multipart"
+	"path/filepath"
 	"os"
 )
 
@@ -18,8 +19,9 @@ func New() contract.IUpload  {
 	return &Local{}
 }
 func (l *Local) Upload(file *multipart.FileHeader, dst string) error  {
-	rootPath := config.Get("upload.local.path")
+	basePath := config.Get("upload.local.path")
 
+	rootPath := filepath.Join(basePath,filepath.Dir(dst))
 	if !helper.IsFileExist(rootPath) {
 		err := os.MkdirAll(rootPath, 0777)
 		if err != nil {
@@ -27,13 +29,14 @@ func (l *Local) Upload(file *multipart.FileHeader, dst string) error  {
 			return err
 		}
 	}
+
 	src, err := file.Open()
 	if err != nil {
 		return err
 	}
 	defer src.Close()
 
-	out, err := os.Create(dst)
+	out, err := os.Create(filepath.Join(basePath,dst))
 	if err != nil {
 		return err
 	}
