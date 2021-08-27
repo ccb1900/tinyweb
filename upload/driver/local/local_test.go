@@ -7,5 +7,8 @@ import (
 
 func TestUpload(t *testing.T) {
 	config.LoadConfig("../../config/app.dev.toml")
-	upload()
+	err := New().Upload(nil, "")
+	if err != nil {
+		return 
+	}
 }

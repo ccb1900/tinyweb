@@ -12,6 +12,7 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
+	github.com/minio/minio-go/v7 v7.0.13 // indirect
 	github.com/mozillazg/go-httpheader v0.3.0 // indirect
 	github.com/sony/sonyflake v1.0.0 // indirect
 	github.com/spf13/viper v1.8.1
